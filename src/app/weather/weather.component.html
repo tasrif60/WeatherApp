@@ -1,1 +1,8 @@
 <p>{{temperature}}</p>
+<p>{{weatherId}}</p>
+<div *ngIf="isDay; else showNight">
+  <p>Day</p>
+</div>
+<ng-template #showNight>
+  <p>Night</p>
+</ng-template>

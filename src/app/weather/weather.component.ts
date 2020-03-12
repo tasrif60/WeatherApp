@@ -10,6 +10,8 @@ export class WeatherComponent implements OnInit {
 
   private locationKey: string;
   private temperature: any;
+  private weatherId: any;
+  private isDay: boolean;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
@@ -29,6 +31,8 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getTemperature(locationKey).subscribe(
       res => {
         this.temperature = res[0].Temperature.Metric.Value + '\xB0' + res[0].Temperature.Metric.Unit;
+        this.weatherId = res[0].WeatherText;
+        this.isDay = res[0].IsDayTime;
       }
     );
   }
