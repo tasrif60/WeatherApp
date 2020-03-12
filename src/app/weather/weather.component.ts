@@ -9,6 +9,7 @@ import {WeatherService} from './weather.service';
 export class WeatherComponent implements OnInit {
 
   private locationKey: string;
+  private temperature: any;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
@@ -19,6 +20,15 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getLocationKey().then(
       res => {
           this.locationKey = res.locationKey.Key;
+          this.getTemperature(this.locationKey);
+      }
+    );
+  }
+
+  getTemperature(locationKey: any) {
+    this.weatherService.getTemperature(locationKey).subscribe(
+      res => {
+        this.temperature = res[0].Temperature.Metric.Value + '\xB0' + res[0].Temperature.Metric.Unit;
       }
     );
   }

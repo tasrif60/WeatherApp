@@ -27,4 +27,9 @@ export class WeatherService {
         });
     });
   }
+
+
+  getTemperature(locationKey: any): Observable<any> {
+     return  this.httpClient.get('http://dataservice.accuweather.com/currentconditions/v1/' + locationKey + '?apikey=' + this.apiKey);
+  }
 }
